@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class ChatMessageDto implements Serializable {
-    @JsonProperty("chatID")
-    private Integer chatID;
+
     @JsonProperty("senderID")
     private Integer senderID;
     @JsonProperty("receiverID")
@@ -22,8 +21,7 @@ public class ChatMessageDto implements Serializable {
     @JsonProperty("localDateTime")
     private String localDateTime;
 
-    public ChatMessageDto(Integer chatID, Integer senderID, Integer receiverID, String text) {
-        this.chatID = chatID;
+    public ChatMessageDto(Integer senderID, Integer receiverID, String text) {
         this.senderID = senderID;
         this.receiverID = receiverID;
         this.text = text;
@@ -34,15 +32,13 @@ public class ChatMessageDto implements Serializable {
         this.localDateTime = LocalDateTimeFormatterUtil.localDateTimeToJsonFormat(LocalDateTime.now());
     }
 
-    public ChatMessageDto(Integer chatID, Integer senderID, Integer receiverID, String text, String localDateTime) {
-        this.chatID = chatID;
+    public ChatMessageDto(Integer senderID, Integer receiverID, String text, String localDateTime) {
         this.senderID = senderID;
         this.receiverID = receiverID;
         this.text = text;
         this.localDateTime = localDateTime;
     }
     public ChatMessageDto(ChatMessageEntity entity) {
-        this.chatID = entity.getChatID();
         this.senderID = entity.getSenderID();
         this.receiverID = entity.getReceiverID();
         this.text = entity.getText();

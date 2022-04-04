@@ -17,11 +17,6 @@ public class ChatMessageEntity implements Comparable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-    @Column(name = "chat_id")
-    private Integer chatID;
-
-
     @Column(name = "sender_id")
     private Integer senderID;
 
@@ -36,8 +31,7 @@ public class ChatMessageEntity implements Comparable {
     @Column(name = "local_date_time")
     private LocalDateTime localDateTime;
 
-    public ChatMessageEntity(Integer chatID, Integer senderID, Integer receiverID, String text, LocalDateTime localDateTime) {
-        this.chatID = chatID;
+    public ChatMessageEntity(Integer senderID, Integer receiverID, String text, LocalDateTime localDateTime) {
         this.senderID = senderID;
         this.receiverID = receiverID;
         this.text = text;
@@ -45,7 +39,6 @@ public class ChatMessageEntity implements Comparable {
     }
 
     public ChatMessageEntity(ChatMessageDto messageDto) {
-        this.chatID = messageDto.getChatID();
         this.senderID = messageDto.getSenderID();
         this.receiverID = messageDto.getReceiverID();
         this.text = messageDto.getText();
@@ -54,7 +47,7 @@ public class ChatMessageEntity implements Comparable {
 
     @Override
     public String toString() {
-        return chatID + " " + senderID + " " + receiverID + " " + text + " " + localDateTime.toString();
+        return senderID + " " + receiverID + " " + text + " " + localDateTime.toString();
     }
 
 

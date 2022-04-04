@@ -25,6 +25,7 @@ public class ChatMessageEntityService {
     public List<ChatMessageEntity> getAllMessagesOf(Integer senderID, Integer receiverID){
         List<ChatMessageEntity> list = repository.findAllBySenderIDAndReceiverID(senderID, receiverID);
         list.addAll(repository.findAllBySenderIDAndReceiverID(receiverID, senderID));
+        Collections.sort(list);
         return list;
     }
 
